@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useMutation, useQuery } from 'react-apollo';
 import { useHistory } from 'react-router-dom';
 
@@ -29,14 +28,12 @@ function AllWeathers() {
   const history = useHistory();
 
   const { data, loading, error } = useQuery(GET_WEATHERS, {
-    pollInterval: 10000,
+    pollInterval: 60000 * 10,
   });
-  console.log(loading);
+
   const [addWeather] = useMutation(ADD_WEATHER, {
     refetchQueries: [{ query: GET_WEATHERS }],
   });
-
-  useEffect(() => {}, []);
 
   const days = [
     '-',
